@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <title>Course work: Viktor Kuksenko IK-41</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css">
+  <body>
+    <h1>Course work</h1>
+    <h1>Made by: Viktor Kuksenko</h1>
+    <h3>
+        LAMP stack deployed with Terraform  and  Ansible.
+        My IP Address is {{ ansible_eth0.ipv4.address }}.
+        This is {{ ansible_system }} OS with {{ ansible_userspace_architecture }} architecture
+    </h3>
+    <article class="vh-100 dt w-100 bg-dark-pink">
+      <div class="dtc v-mid tc white ph3 ph4-l">
+        <p>
+
+            <strong>List of Databases:</strong> <br/>
+        <?php
+
+        $dbobj = mysql_connect('{{ ansible_lo.ipv4.address }}', '{{ dbuser }}', '{{ dbpassword }}');
+        if (!$dbobj) { die('Could not connect: ' . mysql_error()); }
+
+        $result = mysql_query("SHOW DATABASES");
+        while ($res = mysql_fetch_assoc($result)){
+            echo $res['Database'] . "<br/>";
+        }
+
+        ?>
+        </p>
+        <br/>
+        <p><img src="https://www.devopsrunner.com.es/wp-content/uploads/2017/09/logo-50.png" alt="Ansible Terraform"></p>
+      </div>
+    </article>
+  </body>
+</html>
